@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
+import pickle
 
 
 
@@ -55,6 +56,51 @@ def square(number:int=0):
         "Value" : number*number
     }
     return message
+
+class Predict(BaseModel):
+    age	 : int
+    job	 : int
+    marital	 : int
+    education	 : int
+    default	 : int
+    balance	 : int
+    housing	 : int
+    loan	 : int
+    contact	 : int
+    day	 : int
+    month	 : int
+    duration : int	
+    campaign : int	
+    pdays	 : int
+    previous : int	
+    poutcome : int	
+
+
+@app.post("/predict")
+def predict(predict:Predict):
+    print(predict.age)
+    with open('sacler', 'rb') as f:
+        sc = pickle.load(f)
+    with open('model.pkl', 'rb') as f:
+        model = pickle.load(f)
+
+    return str(model.predict(sc.transform([[predict.age, 
+                                           predict.job,
+                                           predict.marital,
+                                           predict.education,
+                                           predict.default,
+                                           predict.balance,
+                                           predict.housing,
+                                           predict.loan,
+                                           predict.contact,
+                                           predict.day,
+                                           predict.month,
+                                           predict.duration,
+                                           predict.campaign,
+                                           predict.pdays,
+                                           predict.previous,
+                                           predict.poutcome,]
+                                           ]))[0])
 
 
 # Create a base model
