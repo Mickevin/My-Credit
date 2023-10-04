@@ -34,6 +34,10 @@ app = FastAPI(title= "My First API",description=description,openapi_tags=tag_met
 def index():
     return "Hello World"
 
+with open('sacler', 'rb') as f:
+        sc = pickle.load(f)
+with open('model-xg.pkl', 'rb') as f:
+    model = pickle.load(f)
 
 
 # Create a GET endpoint
@@ -72,10 +76,6 @@ class Predict(BaseModel):
 @app.post("/predict")
 def predict(predict:Predict):
     print(predict.age)
-    with open('sacler', 'rb') as f:
-        sc = pickle.load(f)
-    with open('model.pkl', 'rb') as f:
-        model = pickle.load(f)
 
     return str(model.predict(sc.transform([[predict.age, 
                                            predict.job,
