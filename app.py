@@ -6,6 +6,8 @@ import joblib
 
 
 
+
+
 # Description of the API
 description = """
 This is your app description, written in markdown code 
@@ -34,9 +36,6 @@ app = FastAPI(title= "My First API",description=description,openapi_tags=tag_met
 def index():
     return "Hello World"
 
-
-sc = joblib.load(open('scaler', 'rb'))
-model = joblib.load(open('model-xg.pkl', 'rb'))
 
 # Create a GET endpoint
 @app.get("/user_name", tags=['Test'])
@@ -74,6 +73,8 @@ class Predict(BaseModel):
 @app.post("/predict")
 def predict(predict:Predict):
     print(predict.age)
+    sc = joblib.load(open('scaler', 'rb'))
+    model = joblib.load(open('model-xg.pkl', 'rb'))
 
     return str(model.predict(sc.transform([[predict.age, 
                                            predict.job,
