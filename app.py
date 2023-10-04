@@ -92,7 +92,7 @@ def predict(predict:Predict):
                                            predict.campaign,
                                            predict.pdays,
                                            predict.previous,
-                                           predict.poutcome,]
+                                           predict.poutcome]
                                            ]))[0])
 
 
