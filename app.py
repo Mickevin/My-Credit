@@ -73,7 +73,7 @@ class Predict(BaseModel):
 @app.post("/predict")
 def predict(predict:Predict):
     print(predict.age)
-    sc = joblib.load(open('scaler', 'rb'))
+    sc = joblib.load(open('scaler.pkl', 'rb'))
     model = joblib.load(open('model-xg.pkl', 'rb'))
 
     return str(model.predict(sc.transform([[
