@@ -51,22 +51,22 @@ def square(number:int=0):
     return message
 
 class Predict(BaseModel):
-    age	 : int
-    job	 : int
-    marital	 : int
-    education	 : int
-    default	 : int
-    balance	 : int
-    housing	 : int
-    loan	 : int
-    contact	 : int
-    day	 : int
-    month	 : int
-    duration : int	
-    campaign : int	
-    pdays	 : int
-    previous : int	
-    poutcome : int	
+    age	        : int
+    job	        : int
+    marital	    : int
+    education	: int
+    default	    : int
+    balance	    : int
+    housing	    : int
+    loan	    : int
+    contact	    : int
+    day	        : int
+    month	    : int
+    duration    : int	
+    campaign    : int	
+    pdays	    : int
+    previous    : int	
+    poutcome    : int	
 
 
 @app.post("/predict")

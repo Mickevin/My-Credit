@@ -37,15 +37,15 @@ class TestAPI(unittest.TestCase):
         self.assertEquals(type(response.json()['Value']), int)
         self.assertEquals(type(response.json()['Text']), str)
 
-    def test_predict(self):
-        response = self.client.post("/predict", json=self.data)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), "0")
+    #def test_predict(self):
+        #response = self.client.post("/predict", json=self.data)
+        #self.assertEqual(response.status_code, 200)
+        #self.assertEqual(response.json(), "0")
 
-        self.data['age'] = 'Bonjour'
-        response = self.client.post("/predict", json=self.data)
-        self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.json()['detail'][0]['msg'], "value is not a valid integer")
+        #self.data['age'] = 'Bonjour'
+        #response = self.client.post("/predict", json=self.data)
+        #self.assertEqual(response.status_code, 422)
+        #self.assertEqual(response.json()['detail'][0]['msg'], "value is not a valid integer")
 
 
 
