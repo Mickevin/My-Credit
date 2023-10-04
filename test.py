@@ -1,34 +1,53 @@
 import unittest
-
-import unittest
 from fastapi.testclient import TestClient
-from app import app, users_db
+from app import app
 
 class TestAPI(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+        self.data = {
+            "age": 58,
+            "job": 0,
+            "marital": 1,
+            "education": 2,
+            "default": 0,
+            "balance": 2143,
+            "housing": 1,
+            "loan": 0,
+            "contact": 2,
+            "day": 5,
+            "month": 8,
+            "duration": 261,
+            "campaign": 1,
+            "pdays": -1,
+            "previous": 0,
+            "poutcome": 3
+        }
     
-    def test_create_user(self):
-        # Test de la création d'un utilisateur
-        user_data = {"username": "john_doe", "email": "john@example.com"}
-        response = self.client.post("/users/", json=user_data)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), user_data)
     
-    def test_get_user(self):
-        # Test de la récupération d'un utilisateur existant
-        user_data = {"username": "jane_doe", "email": "jane@example.com"}
-        users_db.append(user_data)
-        
-        response = self.client.get("/users/0")
+    def test_response(self):
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), user_data)
-    
-    def test_get_user_not_found(self):
-        # Test de la récupération d'un utilisateur inexistant
-        response = self.client.get("/users/99")
+        self.assertEqual(response.json(), "Hello World")
+
+
+    def test_data_type(self):
+        response = self.client.get("/square?number=5")
+        # test du type de variable
+        self.assertEquals(type(response.json()['Value']), int)
+        self.assertEquals(type(response.json()['Text']), str)
+
+    def test_predict(self):
+        response = self.client.post("/predict", json=self.data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {"error": "User not found"})
+        self.assertEqual(response.json(), "0")
+
+        self.data['age'] = 'Bonjour'
+        response = self.client.post("/predict", json=self.data)
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json()['detail'][0]['msg'], "value is not a valid integer")
+
+
 
 if __name__ == '__main__':
     unittest.main()
