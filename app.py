@@ -76,23 +76,24 @@ def predict(predict:Predict):
     sc = joblib.load(open('scaler', 'rb'))
     model = joblib.load(open('model-xg.pkl', 'rb'))
 
-    return str(model.predict(sc.transform([[predict.age, 
-                                           predict.job,
-                                           predict.marital,
-                                           predict.education,
-                                           predict.default,
-                                           predict.balance,
-                                           predict.housing,
-                                           predict.loan,
-                                           predict.contact,
-                                           predict.day,
-                                           predict.month,
-                                           predict.duration,
-                                           predict.campaign,
-                                           predict.pdays,
-                                           predict.previous,
-                                           predict.poutcome]
-                                           ]))[0])
+    return str(model.predict(sc.transform([[
+        int(predict.age), 
+        int(predict.job),
+        int(predict.marital),
+        int(predict.education),
+        int(predict.default),
+        int(predict.balance),
+        int(predict.housing),
+        int(predict.loan),
+        int(predict.contact),
+        int(predict.day),
+        int(predict.month),
+        int(predict.duration),
+        int(predict.campaign),
+        int(predict.pdays),
+        int(predict.previous),
+        int(predict.poutcome)]
+        ]))[0])
 
 
 # Create a base model
