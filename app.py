@@ -34,11 +34,9 @@ app = FastAPI(title= "My First API",description=description,openapi_tags=tag_met
 def index():
     return "Hello World"
 
-with open('sacler', 'rb') as f:
-        sc = pickle.load(f)
-with open('model-xg.pkl', 'rb') as f:
-    model = pickle.load(f)
 
+sc = pickle.load(open('sacler', 'rb'))
+model = pickle.load(open('model-xg.pkl', 'rb'))
 
 # Create a GET endpoint
 @app.get("/user_name", tags=['Test'])
