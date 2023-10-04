@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-import pickle
+import joblib
 
 
 
@@ -35,8 +35,8 @@ def index():
     return "Hello World"
 
 
-sc = pickle.load(open('sacler', 'rb'))
-model = pickle.load(open('model-xg.pkl', 'rb'))
+sc = joblib.load(open('scaler', 'rb'))
+model = joblib.load(open('model-xg.pkl', 'rb'))
 
 # Create a GET endpoint
 @app.get("/user_name", tags=['Test'])
