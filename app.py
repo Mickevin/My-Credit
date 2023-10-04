@@ -17,39 +17,32 @@ This is your app description, written in markdown code
 """
 
 # Tags for documentation
-tag_metadata = [
-    {
-        "name": "GET",
-        "description": "Operations with GET methods. ",
+tag_metadata = [{
+    "name": "Predict",
+    "description": "Operations with GET methods. ",
     },
-    {
-        "name": "POST",
-        "description": "Operations with POST methods. ",
-    },
-]
+    {"name": "POST",
+    "description": "Operations with POST methods. ",
+    }]
 
 # Create the app
-app = FastAPI(
-    title= "My First API",
-    description=description,
-    openapi_tags=tag_metadata
-)
+app = FastAPI(title= "My First API",description=description,openapi_tags=tag_metadata)
 
 
 # Create a first endpoint
-@app.get("/")
+@app.get("/", tags=['Predict'])
 def index():
     return "Hello World"
 
 
 
 # Create a GET endpoint
-@app.get("/user_name", tags=['GET'])
+@app.get("/user_name", tags=['Test'])
 def user_name(name:str='Joe'):
     return "Bonjour " + name
 
 # Create a GET endpoint
-@app.get("/square", tags=['GET'])
+@app.get("/square", tags=['Test'])
 def square(number:int=0):
     message = {
         'Text' : "La valeur au carré de " + str(number) + " est " + str(number*number),
@@ -111,7 +104,7 @@ class Article(BaseModel):
 
 
 # Create a POST endpoint
-@app.post("/article", tags=['POST', 'GET'])
+@app.post("/article", tags=['POST', 'Test'])
 def create_article(article: Article):
     df = pd.read_csv('articles.csv')
 
