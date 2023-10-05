@@ -8,3 +8,4 @@ st.title("My Credit App")
 
 st.text_input("Name")
 st.text_input("Age")
+st.write("Hello World")
