@@ -6,6 +6,8 @@ st.set_page_config(
 
 st.title("My Credit App")
 
+st.button("Click me")
+
 st.text_input("Name")
 st.text_input("Age")
 st.write("Hello World")
