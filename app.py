@@ -4,7 +4,7 @@ st.set_page_config(
     page_title="My Credit App", 
     page_icon=":smiley:")
 
-st.title("My Credit App")
+st.title("My Credit App 1")
 
 st.button("Click me")
 
