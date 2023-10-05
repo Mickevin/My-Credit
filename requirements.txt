@@ -1,0 +1,6 @@
+uvicorn
+fastapi
+pydantic
+pandas
+scikit-learn
+httpx
